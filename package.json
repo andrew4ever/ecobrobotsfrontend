@@ -1,0 +1,23 @@
+{
+  "name": "ecobrobotsfrontend",
+  "version": "1.0.0",
+  "description": "Redone frontend for #brobots eco-project. Includes new UI and improved UX",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrew4ever/ecobrobotsfrontend.git"
+  },
+  "keywords": [],
+  "author": "Andrew Yatsura",
+  "bugs": {
+    "url": "https://github.com/andrew4ever/ecobrobotsfrontend/issues"
+  },
+  "homepage": "https://github.com/andrew4ever/ecobrobotsfrontend#readme",
+  "devDependencies": {
+    "sass": "^1.26.11"
+  }
+}
