@@ -25,6 +25,13 @@ fetch('http://localhost:8080/map')
         map,
         animation: google.maps.Animation.DROP,
         title: 'AQI',
+        label: {
+          text: point.aqi.toString(),
+          color: 'white',
+          fontFamily: 'Roboto',
+          fontWeight: 'bold',
+          fontSize: '14px',
+        },
       });
     }
 
