@@ -1,6 +1,15 @@
 fetch('http://localhost:8080/map')
   .then((response) => response.json())
   .then((data) => {
+    if (!data.length) {
+      document.querySelector('div#aqi-general h2').innerHTML = 'N/A';
+      document.querySelector('div#aqi-general h5').innerHTML =
+        'No data available';
+      document.querySelector('span#latest-update').innerHTML =
+        'No data available';
+      return;
+    }
+
     let point;
     let average_aqi = 0;
 
