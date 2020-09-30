@@ -12,6 +12,7 @@ fetch('http://localhost:8080/map')
 
     let point;
     let average_aqi = 0;
+    let base_url = '';
 
     for (point of data) {
       average_aqi += point.aqi;
@@ -20,9 +21,17 @@ fetch('http://localhost:8080/map')
         lng: parseFloat(point.longitude),
       };
 
+      icon = {
+        url: base_url + aqiMarkerColor(point.aqi),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 10),
+        size: new google.maps.Size(20, 32),
+      };
+
       new google.maps.Marker({
-        position: center,
         map,
+        // icon,
+        position: center,
         animation: google.maps.Animation.DROP,
         title: 'AQI',
         label: {
@@ -36,10 +45,10 @@ fetch('http://localhost:8080/map')
     }
 
     average_aqi /= data.length;
-    document.querySelector('div#aqi-general h2').innerHTML = Math.round(
+    document.querySelector('div#aqi-general h1').innerHTML = Math.round(
       average_aqi,
     );
-    document.querySelector('div#aqi-general h5').innerHTML = aqiDescription(
+    document.querySelector('div#aqi-general h4').innerHTML = aqiDescription(
       average_aqi,
     );
     document.querySelector('span#latest-update').innerHTML = point.created;
@@ -61,21 +70,18 @@ function aqiDescription(aqi) {
   }
 }
 
-function areaPolygon(center) {}
-
-// const triangleCoords = [
-//   { lat: 25.774, lng: -80.19 },
-//   { lat: 18.466, lng: -66.118 },
-//   { lat: 32.321, lng: -64.757 },
-//   { lat: 25.774, lng: -80.19 },
-// ];
-
-// const bermudaTriangle = new google.maps.Polygon({
-//   paths: triangleCoords,
-//   strokeColor: '#000000',
-//   strokeOpacity: 0,
-//   strokeWeight: 0,
-//   fillColor: '#10FF00',
-//   fillOpacity: 0.3,
-// });
-// bermudaTriangle.setMap(map);
+function aqiMarkerColor(aqi) {
+  if (aqi >= 0 && aqi <= 50) {
+    return 'marker-good.png';
+  } else if (aqi > 50 && aqi <= 100) {
+    return 'marker-moderate.png';
+  } else if (aqi > 100 && aqi <= 150) {
+    return 'marker-unhealthy-for-sensitive-groups.png';
+  } else if (aqi > 150 && aqi <= 200) {
+    return 'marker-unhealthy.png';
+  } else if (aqi > 200 && aqi <= 300) {
+    return 'marker-very-unhealthy.png';
+  } else if (aqi > 300 && aqi <= 500) {
+    return 'marker-hazardous.png';
+  }
+}
