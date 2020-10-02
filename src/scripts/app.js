@@ -24,9 +24,10 @@ function displayAqi() {
 
         icon = {
           url: base_url + aqiMarkerColor(point.aqi),
-          origin: new google.maps.Point(0, -10),
-          anchor: new google.maps.Point(0, 0),
-          size: new google.maps.Size(27, 50),
+          origin: new google.maps.Point(0, 0),
+          labelOrigin: new google.maps.Point(14, 15),
+          anchor: new google.maps.Point(14, 43),
+          size: new google.maps.Size(27, 43),
         };
 
         new google.maps.Marker({
