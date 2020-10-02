@@ -74,22 +74,22 @@ function aqiDescription(aqi) {
 
 function aqiMarkerColor(aqi) {
   if (aqi >= 0 && aqi <= 50) {
-    // return 'marker-good.png';
+    // return 'good.png';
     return 'LLk8g21.png';
   } else if (aqi > 50 && aqi <= 100) {
-    // return 'marker-moderate.png';
+    // return 'moderate.png';
     return '9FO3q7C.png';
   } else if (aqi > 100 && aqi <= 150) {
-    // return 'marker-unhealthy-for-sensitive-groups.png';
+    // return 'unhealthy-for-sensitive-groups.png';
     return 'aCp0ABz.png';
   } else if (aqi > 150 && aqi <= 200) {
-    // return 'marker-unhealthy.png';
+    // return 'unhealthy.png';
     return 'O5wvyYU.png';
   } else if (aqi > 200 && aqi <= 300) {
-    // return 'marker-very-unhealthy.png';
+    // return 'very-unhealthy.png';
     return '3iSK85T.png';
   } else if (aqi > 300 && aqi <= 500) {
-    // return 'marker-hazardous.png';
+    // return 'hazardous.png';
     return 'u3MyHA2.png';
   }
 }
