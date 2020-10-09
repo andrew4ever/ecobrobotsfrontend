@@ -1,5 +1,5 @@
-function displayAqi() {
-  fetch('http://localhost:8080/map')
+function displayAqi(url) {
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (!data.length) {
@@ -34,7 +34,6 @@ function displayAqi() {
           map,
           icon,
           position: center,
-          animation: google.maps.Animation.DROP,
           title: 'AQI',
           label: {
             text: point.aqi.toString(),
@@ -95,4 +94,4 @@ function aqiMarkerColor(aqi) {
   }
 }
 
-displayAqi();
+displayAqi('http://localhost:8080/map');
