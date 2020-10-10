@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ecobrobots</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/style.scss" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <script>
+      let map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: { lat: 50.51, lng: 30.785 },
+          zoom: 14,
+        });
+      }
+    </script>
+    <script src="scripts/app.js" defer></script>
+  </head>
+  <body>
+    <aside>
+      <img id="logo" src="images/logo.png" alt="brobots-logo" />
+
+      <div id="aqi-general">
+        <h1>...</h1>
+        <h4>...</h4>
+      </div>
+
+      <!-- <div id="aqi-table">
+        <table>
+          <tr>
+            <th>параметр</th>
+            <th>AQI</th>
+            <th>значення</th>
+          </tr>
+          <tr>
+            <td>CO</td>
+            <td>18</td>
+            <td>69.7 ppm</td>
+          </tr>
+        </table>
+      </div> -->
+
+      <p id="latest-update">
+        Всі значення розраховані станом на
+        <span id="latest-update">...</span>
+      </p>
+    </aside>
+
+    <div id="map"></div>
+  </body>
+</html>
