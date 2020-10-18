@@ -9,22 +9,23 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/style.scss" />
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
-    <script>
+    <script type="module">
       let map;
 
-      function initMap() {
+      window.initMap = function () {
         map = new google.maps.Map(document.getElementById('map'), {
           center: { lat: 50.51, lng: 30.785 },
           zoom: 14,
         });
-      }
+      };
     </script>
-    <script src="scripts/app.js" defer></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoTzKcrzucIgljozSbTfnxrcVHiq0ZWks&callback=initMap&libraries=&v=weekly"
+    ></script>
+    <script src="scripts/app.js"></script>
   </head>
   <body>
     <aside>
