@@ -1,6 +1,6 @@
 # #brobots eco-project frontend
 
-Redone frontend for #brobots eco-project. Includes new UI and improved UX
+Renewed frontend for #brobots eco-project. Includes new UI and improved UX
 
 ## Project setup
 
@@ -33,5 +33,15 @@ or
 or
 
 `yarn build`
+
+### Deploy project
+
+You have to be whitelisted on the server and have credentials for it.
+
+`npm run deploy`
+
+or
+
+`yarn deploy`
 
 ## [eco-project backend](https://github.com/andrew4ever/ecobrobotsbackend)
