@@ -1,11 +1,12 @@
 {
   "name": "ecobrobotsfrontend",
   "version": "1.0.0",
-  "description": "Redone frontend for #brobots eco-project. Includes new UI and improved UX",
+  "description": "Renewed frontend for #brobots eco-project. Includes new UI and improved UX",
   "main": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "deploy": "npm run build && cd dist && rsync -r . au402216@au402216.ftp.tools:/home/au402216/eco.brobots.org.ua/www"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/andrew4ever/ecobrobotsfrontend#readme",
   "devDependencies": {
+    "parcel-bundler": "^1.12.4",
     "cssnano": "^4.1.10",
     "sass": "^1.26.11"
   }
