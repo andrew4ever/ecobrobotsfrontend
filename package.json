@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
-    "deploy": "npm run build && cd dist && rsync -r . au402216@au402216.ftp.tools:/home/au402216/eco.brobots.org.ua/www"
+    "deploy": "npm run build && cd dist && rsync -r --delete . au402216@au402216.ftp.tools:/home/au402216/eco.brobots.org.ua/www"
   },
   "repository": {
     "type": "git",
