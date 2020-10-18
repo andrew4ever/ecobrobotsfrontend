@@ -1,32 +1,32 @@
-name: Deploy
+# name: Deploy
 
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  deploy:
-    name: deploy
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
+# jobs:
+#   deploy:
+#     name: deploy
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         node-version: [12.x]
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
       
-      - name: Install node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+#       - name: Install node
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: ${{ matrix.node-version }}
 
-      - run: set -eu
-      - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ secrets.sshkey }}" > "$HOME/.ssh/key"
-      - run: chmod 600 "$HOME/.ssh/key"
-      - run: npm ci
+#       - run: set -eu
+#       - run: mkdir "$HOME/.ssh"
+#       - run: echo "${{ secrets.sshkey }}" > "$HOME/.ssh/key"
+#       - run: chmod 600 "$HOME/.ssh/key"
+#       - run: npm ci
 
-      - name: Deploy to server 
-        run: npm run deploy
+#       - name: Deploy to server 
+#         run: npm run deploy
