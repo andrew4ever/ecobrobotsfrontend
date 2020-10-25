@@ -44,4 +44,8 @@ or
 
 `yarn deploy`
 
+## For WSL users
+
+I use WSL as my working system and I spent lots of time debugging this small thing: hot reload isn't working if your project is on Windows partition. Move the project to WSL part. It also works much faster there.
+
 ## [eco-project backend](https://github.com/andrew4ever/ecobrobotsbackend)

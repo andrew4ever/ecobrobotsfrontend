@@ -94,4 +94,4 @@ function aqiMarkerColor(aqi) {
   }
 }
 
-displayAqi('http://localhost:8080/map');
+displayAqi('/map');
