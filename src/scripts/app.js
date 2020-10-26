@@ -8,6 +8,9 @@ function displayAqi(url) {
           'No data available';
         document.querySelector('span#latest-update').innerHTML =
           'no data available';
+        document.querySelector(
+          'table',
+        ).innerHTML += `<tr><td>no data</td><td>no data</td></tr>`;
         return;
       }
 
