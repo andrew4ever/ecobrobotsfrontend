@@ -136,5 +136,5 @@ function aqiMarkerColor(aqi) {
   }
 }
 
-// displayAqi('/map'); // PRODUCTION
-displayAqi('http://localhost:8080/map'); // DEVELOPMENT
+displayAqi('/map'); // PRODUCTION
+// displayAqi('http://localhost:8080/map'); // DEVELOPMENT
