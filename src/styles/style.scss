@@ -5,29 +5,10 @@
   font-weight: 300;
 }
 
-h1 {
-  font-size: 7rem;
-}
-
-h2 {
-  font-size: 6rem;
-}
-
-h3 {
-  font-size: 3rem;
-}
-
-h4 {
-  font-size: 2rem;
-}
-
-h5 {
-  font-size: 1rem;
-}
-
 html {
   height: 100%;
-  font-size: 1.4rem;
+  font-size: 1em;
+  overflow-y: hidden;
 }
 
 body {
@@ -38,9 +19,28 @@ body {
   height: 100%;
 }
 
+h1 {
+  font-size: 4em;
+}
+h2 {
+  font-size: 3em;
+}
+h3 {
+  font-size: 2.3em;
+}
+h4 {
+  font-size: 2.2em;
+}
+h5 {
+  font-size: 1.6em;
+}
+h6 {
+  font-size: 1.5em;
+}
+
 aside {
   flex: 1;
-  padding: 30px;
+  padding: 1.2em;
 
   text-align: center;
   background-color: #fff000;
@@ -53,11 +53,11 @@ aside {
   }
 
   #aqi-general {
-    padding-top: 20%;
+    padding-top: 2rem;
   }
 
   p#latest-update {
-    padding-top: 20%;
+    padding-top: 2rem;
   }
 
   span#latest-update {
@@ -65,7 +65,7 @@ aside {
   }
 
   div#aqi-table {
-    padding-top: 20%;
+    padding-top: 1.8rem;
 
     table {
       width: 100%;
@@ -74,7 +74,7 @@ aside {
 
       th,
       td {
-        padding: 5px;
+        padding: 0.3rem;
         text-align: center;
         border-bottom: 0.5px solid #808080;
       }
@@ -96,7 +96,7 @@ aside {
   }
 
   aside {
-    padding: 10px;
+    padding: 1rem;
 
     #logo {
       width: 30%;
@@ -115,6 +115,7 @@ aside {
 
     div#aqi-table {
       padding: 0;
+      display: none;
     }
   }
 }
