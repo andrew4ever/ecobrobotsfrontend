@@ -74,7 +74,7 @@ function displayAqi(url) {
             };
           }
 
-          average_values[value_type]['value'] += point[value_type];
+          average_values[value_type]['value'] += +point[value_type];
           average_values[value_type]['count'] += 1;
         }
       }
@@ -90,7 +90,10 @@ function displayAqi(url) {
 
       let value, v;
       for (value in average_values) {
-        v = average_values[value]['value'] / average_values[value]['count'];
+        v = Math.round(
+          average_values[value]['value'] / average_values[value]['count'],
+        );
+
         document.querySelector(
           'table',
         ).innerHTML += `<tr><td>${value}</td><td>${v}</td></tr>`;
