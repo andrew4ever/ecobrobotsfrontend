@@ -3,18 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ecobrobots</title>
+    <title>brobots eco</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/style.scss" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="manifest.webmanifest" />
     <script type="module">
       let map;
 
       window.initMap = function () {
         window.map = new google.maps.Map(document.getElementById('map'), {
-          center: { lat: 50.51, lng: 30.785 },
+          center: { lat: 50.515, lng: 30.785 },
           zoom: 14,
         });
       };
