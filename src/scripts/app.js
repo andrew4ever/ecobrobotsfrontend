@@ -7,7 +7,7 @@ function displayAqi(url) {
         document.querySelector('div#aqi-general h4').innerHTML =
           'No data available';
         document.querySelector('span#latest-update').innerHTML =
-          'No data available';
+          'no data available';
         return;
       }
 
@@ -39,7 +39,7 @@ function displayAqi(url) {
             text: point.aqi.toString(),
             color: 'black',
             fontFamily: 'Roboto',
-            fontWeight: 'bold',
+            fontWeight: 'thin',
             fontSize: '14px',
           },
         });
@@ -53,6 +53,9 @@ function displayAqi(url) {
         average_aqi,
       );
       document.querySelector('span#latest-update').innerHTML = point.created;
+    })
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -94,4 +97,5 @@ function aqiMarkerColor(aqi) {
   }
 }
 
-displayAqi('/map');
+displayAqi('/map'); // PRODUCTION
+// displayAqi('http://localhost:8080/map'); // DEVELOPMENT
