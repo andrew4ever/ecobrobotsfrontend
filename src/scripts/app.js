@@ -11,9 +11,28 @@ function displayAqi(url) {
         return;
       }
 
-      let point;
-      let average_aqi = 0;
+      let value_types = [
+        'pm25',
+        'pm100',
+        'o31',
+        'o38',
+        'co',
+        'so2',
+        'no2',
+        'temp',
+        'humi',
+        'press',
+        'pm1',
+        'nh3',
+        'co2',
+        'rad',
+        'sound',
+      ];
+      let aqi_value_types = ['pm25', 'pm100', 'o31', 'o38', 'co', 'so2', 'no2'];
       let base_url = 'https://i.imgur.com/';
+      let average_aqi = 0;
+      let average_values = {};
+      let point;
 
       for (point of data) {
         average_aqi += point.aqi;
@@ -43,6 +62,18 @@ function displayAqi(url) {
             fontSize: '14px',
           },
         });
+
+        for (let value_type of aqi_value_types) {
+          if (!(value_type in average_values)) {
+            average_values[value_type] = {
+              value: 0,
+              count: 0,
+            };
+          }
+
+          average_values[value_type]['value'] += point[value_type];
+          average_values[value_type]['count'] += 1;
+        }
       }
 
       average_aqi /= data.length;
@@ -53,6 +84,14 @@ function displayAqi(url) {
         average_aqi,
       );
       document.querySelector('span#latest-update').innerHTML = point.created;
+
+      let value, v;
+      for (value in average_values) {
+        v = average_values[value]['value'] / average_values[value]['count'];
+        document.querySelector(
+          'table',
+        ).innerHTML += `<tr><td>${value}</td><td>${v}</td></tr>`;
+      }
     })
     .catch((error) => {
       console.error(error);
@@ -97,5 +136,5 @@ function aqiMarkerColor(aqi) {
   }
 }
 
-displayAqi('/map'); // PRODUCTION
-// displayAqi('http://localhost:8080/map'); // DEVELOPMENT
+// displayAqi('/map'); // PRODUCTION
+displayAqi('http://localhost:8080/map'); // DEVELOPMENT
