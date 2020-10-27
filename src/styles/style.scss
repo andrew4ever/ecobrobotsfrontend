@@ -8,7 +8,6 @@
 html {
   height: 100%;
   font-size: 1em;
-  overflow-y: hidden;
 }
 
 body {
@@ -41,6 +40,7 @@ h6 {
 aside {
   flex: 1;
   padding: 1.2em;
+  overflow-y: hidden;
 
   text-align: center;
   background-color: #fff000;
@@ -86,6 +86,22 @@ aside {
   flex: 4;
 }
 
+@media screen and (max-width: 1367px) {
+  aside {
+    flex: 1;
+  }
+
+  #map {
+    flex: 2;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  aside {
+    overflow-y: scroll;
+  }
+}
+
 @media screen and (max-width: 768px) {
   body {
     flex-direction: column;
@@ -96,11 +112,14 @@ aside {
   }
 
   aside {
+    flex: 1;
     padding: 1rem;
+    overflow-y: auto;
 
     #logo {
       width: 30%;
     }
+
     #aqi-general {
       padding: 0;
     }
@@ -118,10 +137,25 @@ aside {
       display: none;
     }
   }
+  #map {
+    flex: 4;
+  }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 769px) {
+  html {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 501px) {
   html {
     font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  html {
+    font-size: 0.75rem;
   }
 }

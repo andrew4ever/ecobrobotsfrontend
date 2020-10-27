@@ -64,11 +64,13 @@ function displayAqi(url, draw_markers = true) {
 
           marker.addListener('mouseup', () => {
             if (!marker.getAnimation()) {
+              displayLoading();
               stopMarker(current_marker);
               current_marker = marker;
               startMarker(marker);
               displayAreaAqi(url, marker.getPosition());
             } else {
+              displayLoading();
               stopMarker(marker);
               displayAqi(url, false);
             }
@@ -97,7 +99,9 @@ function displayAqi(url, draw_markers = true) {
 
       displayData(average_aqi, average_values, point.created);
       map.addListener('click', () => {
+        displayLoading();
         stopMarker(current_marker);
+        displayAqi(url, false);
       });
     })
     .catch((error) => {
@@ -157,6 +161,15 @@ function displayData(aqi, values, created) {
   }
 }
 
+function displayLoading() {
+  document.querySelector('div#aqi-general h1').innerHTML = '...';
+  document.querySelector('div#aqi-general h4').innerHTML = 'Loading...';
+  document.querySelector('span#latest-update').innerHTML = '...';
+  document.querySelector(
+    'table',
+  ).innerHTML += `<tr><td>wait</td><td>please</td></tr>`;
+}
+
 function displayEmpty() {
   document.querySelector('div#aqi-general h1').innerHTML = 'N/A';
   document.querySelector('div#aqi-general h4').innerHTML = 'No data available';
@@ -207,9 +220,12 @@ function aqiMarkerColor(aqi) {
 function startMarker(marker) {
   if (!marker) return;
 
+  marker.setLabel(null);
   map.panTo(marker.getPosition());
   marker.setAnimation(google.maps.Animation.BOUNCE);
-  marker.setLabel(null);
+  setTimeout(() => {
+    marker.setLabel(null);
+  }, 600);
 }
 
 function stopMarker(marker) {
