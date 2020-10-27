@@ -163,20 +163,24 @@ function displayData(aqi, values, created) {
 
 function displayLoading() {
   document.querySelector('div#aqi-general h1').innerHTML = '...';
-  document.querySelector('div#aqi-general h4').innerHTML = 'Loading...';
+  document.querySelector('div#aqi-general h4').innerHTML = 'Завантаження...';
   document.querySelector('span#latest-update').innerHTML = '...';
+  document.querySelector('table').innerHTML =
+    '<tr><th>параметр</th><th>значення</th></tr>';
   document.querySelector(
     'table',
-  ).innerHTML += `<tr><td>wait</td><td>please</td></tr>`;
+  ).innerHTML += `<tr><td>...</td><td>...</td></tr>`;
 }
 
 function displayEmpty() {
   document.querySelector('div#aqi-general h1').innerHTML = 'N/A';
-  document.querySelector('div#aqi-general h4').innerHTML = 'No data available';
-  document.querySelector('span#latest-update').innerHTML = 'no data available';
+  document.querySelector('div#aqi-general h4').innerHTML = 'Немає даних';
+  document.querySelector('span#latest-update').innerHTML = 'немає даних';
+  document.querySelector('table').innerHTML =
+    '<tr><th>параметр</th><th>значення</th></tr>';
   document.querySelector(
     'table',
-  ).innerHTML += `<tr><td>no data</td><td>no data</td></tr>`;
+  ).innerHTML += `<tr><td>пусто</td><td>пусто</td></tr>`;
 }
 
 function aqiDescription(aqi) {
