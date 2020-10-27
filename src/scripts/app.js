@@ -221,5 +221,5 @@ function stopMarker(marker) {
   }, 600);
 }
 
-// displayAqi(''); // PRODUCTION
-displayAqi('http://localhost:8080'); // DEVELOPMENT
+displayAqi(''); // PRODUCTION
+// displayAqi('http://localhost:8080'); // DEVELOPMENT
