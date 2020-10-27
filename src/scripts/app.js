@@ -64,11 +64,13 @@ function displayAqi(url, draw_markers = true) {
 
           marker.addListener('mouseup', () => {
             if (!marker.getAnimation()) {
+              displayLoading();
               stopMarker(current_marker);
               current_marker = marker;
               startMarker(marker);
               displayAreaAqi(url, marker.getPosition());
             } else {
+              displayLoading();
               stopMarker(marker);
               displayAqi(url, false);
             }
@@ -97,6 +99,7 @@ function displayAqi(url, draw_markers = true) {
 
       displayData(average_aqi, average_values, point.created);
       map.addListener('click', () => {
+        displayLoading();
         stopMarker(current_marker);
         displayAqi(url, false);
       });
@@ -156,6 +159,15 @@ function displayData(aqi, values, created) {
       'table',
     ).innerHTML += `<tr><td>${value}</td><td>${values[value]}</td></tr>`;
   }
+}
+
+function displayLoading() {
+  document.querySelector('div#aqi-general h1').innerHTML = '...';
+  document.querySelector('div#aqi-general h4').innerHTML = 'Loading...';
+  document.querySelector('span#latest-update').innerHTML = '...';
+  document.querySelector(
+    'table',
+  ).innerHTML += `<tr><td>wait</td><td>please</td></tr>`;
 }
 
 function displayEmpty() {
