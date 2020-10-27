@@ -98,6 +98,7 @@ function displayAqi(url, draw_markers = true) {
       displayData(average_aqi, average_values, point.created);
       map.addListener('click', () => {
         stopMarker(current_marker);
+        displayAqi(url, false);
       });
     })
     .catch((error) => {
@@ -207,9 +208,12 @@ function aqiMarkerColor(aqi) {
 function startMarker(marker) {
   if (!marker) return;
 
+  marker.setLabel(null);
   map.panTo(marker.getPosition());
   marker.setAnimation(google.maps.Animation.BOUNCE);
-  marker.setLabel(null);
+  setTimeout(() => {
+    marker.setLabel(null);
+  }, 600);
 }
 
 function stopMarker(marker) {
