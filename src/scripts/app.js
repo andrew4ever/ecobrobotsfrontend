@@ -96,6 +96,9 @@ function displayAqi(url, draw_markers = true) {
       }
 
       displayData(average_aqi, average_values, point.created);
+      map.addListener('click', () => {
+        stopMarker(current_marker);
+      });
     })
     .catch((error) => {
       displayEmpty();
