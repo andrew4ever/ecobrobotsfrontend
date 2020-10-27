@@ -1,7 +1,7 @@
 {
   "name": "ecobrobotsfrontend",
   "version": "1.0.0",
-  "description": "Renewed frontend for #brobots eco-project. Includes new UI and improved UX",
+  "description": "Renewed frontend for #brobots eco. Includes new UI and improved UX",
   "main": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html",
