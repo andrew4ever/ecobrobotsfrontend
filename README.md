@@ -1,6 +1,11 @@
-# #brobots eco-project frontend
+# #brobots eco frontend
 
-Renewed frontend for #brobots eco-project. Includes new UI and improved UX
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/andrew4ever/ecobrobotsfrontend?style=flat&logo=github&labelColor=181717&color=F8F8F5)
+[![#brobots eco website](https://img.shields.io/badge/%23brobots-eco-fff000)](http://eco.brobots.org.ua)
+
+Renewed frontend for #brobots eco. Includes new UI and improved UX.
+
+**#brobots eco** is a net of sensors that collect data about air quality in Brovary.
 
 ## Project setup
 
@@ -48,4 +53,4 @@ or
 
 I use WSL as my working system and I spent lots of time debugging this small thing: hot reload isn't working if your project is on Windows partition. Move the project to WSL part. It also works much faster there.
 
-## [eco-project backend](https://github.com/andrew4ever/ecobrobotsbackend)
+## [eco backend](https://github.com/andrew4ever/ecobrobotsbackend)
