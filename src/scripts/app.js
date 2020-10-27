@@ -19,7 +19,7 @@ const value_types = [
 ];
 
 function displayAqi(url, draw_markers = true) {
-  fetch(url)
+  fetch(url + '/map')
     .then((response) => response.json())
     .then((data) => {
       if (!data.length) {
@@ -61,12 +61,12 @@ function displayAqi(url, draw_markers = true) {
             },
           });
 
-          marker.addListener('click', () => {
+          marker.addListener('mouseup', () => {
             if (!marker.getAnimation()) {
               map.panTo(marker.getPosition());
               marker.setAnimation(google.maps.Animation.BOUNCE);
               marker.setLabel(null);
-              displayAreaAqi(marker.getPosition());
+              displayAreaAqi(url, marker.getPosition());
             } else {
               marker.setAnimation(null);
               setTimeout(() => {
@@ -105,9 +105,10 @@ function displayAqi(url, draw_markers = true) {
     });
 }
 
-function displayAreaAqi(position) {
+function displayAreaAqi(url, position) {
   fetch(
-    'http://localhost:8080/area?' +
+    url +
+      '/area?' +
       new URLSearchParams({
         latitude: position.lat(),
         longitude: position.lng(),
@@ -202,5 +203,5 @@ function aqiMarkerColor(aqi) {
   }
 }
 
-displayAqi('/map'); // PRODUCTION
-// displayAqi('http://localhost:8080/map'); // DEVELOPMENT
+displayAqi(''); // PRODUCTION
+// displayAqi('http://localhost:8080'); // DEVELOPMENT
