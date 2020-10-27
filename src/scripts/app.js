@@ -18,7 +18,7 @@ const value_types = [
   'sound',
 ];
 
-function displayAqi(url) {
+function displayAqi(url, draw_markers = true) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -46,24 +46,36 @@ function displayAqi(url) {
           size: new google.maps.Size(27, 43),
         };
 
-        let marker = new google.maps.Marker({
-          map,
-          icon,
-          position: center,
-          title: 'AQI',
-          label: {
-            text: point.aqi.toString(),
-            color: 'black',
-            fontFamily: 'Roboto',
-            fontWeight: 'thin',
-            fontSize: '14px',
-          },
-        });
+        if (draw_markers) {
+          let marker = new google.maps.Marker({
+            map,
+            icon,
+            position: center,
+            title: point.aqi.toString(),
+            label: {
+              text: point.aqi.toString(),
+              color: 'black',
+              fontFamily: 'Roboto',
+              fontWeight: 'thin',
+              fontSize: '14px',
+            },
+          });
 
-        marker.addListener('click', () => {
-          displayAreaAQI(marker.getPosition());
-          map.panTo(marker.getPosition());
-        });
+          marker.addListener('click', () => {
+            if (!marker.getAnimation()) {
+              map.panTo(marker.getPosition());
+              marker.setAnimation(google.maps.Animation.BOUNCE);
+              marker.setLabel(null);
+              displayAreaAqi(marker.getPosition());
+            } else {
+              marker.setAnimation(null);
+              setTimeout(() => {
+                marker.setLabel(marker.getTitle());
+              }, 600);
+              displayAqi(url, false);
+            }
+          });
+        }
 
         for (let value_type of aqi_value_types) {
           if (!(value_type in average_values)) {
@@ -93,7 +105,7 @@ function displayAqi(url) {
     });
 }
 
-function displayAreaAQI(position) {
+function displayAreaAqi(position) {
   fetch(
     'http://localhost:8080/area?' +
       new URLSearchParams({
