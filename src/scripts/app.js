@@ -1,38 +1,32 @@
+const base_url = 'https://i.imgur.com/';
+const aqi_value_types = ['pm25', 'pm100', 'o31', 'o38', 'co', 'so2', 'no2'];
+const value_types = [
+  'pm25',
+  'pm100',
+  'o31',
+  'o38',
+  'co',
+  'so2',
+  'no2',
+  'temp',
+  'humi',
+  'press',
+  'pm1',
+  'nh3',
+  'co2',
+  'rad',
+  'sound',
+];
+
 function displayAqi(url) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (!data.length) {
-        document.querySelector('div#aqi-general h1').innerHTML = 'N/A';
-        document.querySelector('div#aqi-general h4').innerHTML =
-          'No data available';
-        document.querySelector('span#latest-update').innerHTML =
-          'no data available';
-        document.querySelector(
-          'table',
-        ).innerHTML += `<tr><td>no data</td><td>no data</td></tr>`;
+        displayEmpty();
         return;
       }
 
-      let value_types = [
-        'pm25',
-        'pm100',
-        'o31',
-        'o38',
-        'co',
-        'so2',
-        'no2',
-        'temp',
-        'humi',
-        'press',
-        'pm1',
-        'nh3',
-        'co2',
-        'rad',
-        'sound',
-      ];
-      let aqi_value_types = ['pm25', 'pm100', 'o31', 'o38', 'co', 'so2', 'no2'];
-      let base_url = 'https://i.imgur.com/';
       let average_aqi = 0;
       let average_values = {};
       let point;
@@ -48,11 +42,11 @@ function displayAqi(url) {
           url: base_url + aqiMarkerColor(point.aqi),
           origin: new google.maps.Point(0, 0),
           labelOrigin: new google.maps.Point(14, 15),
-          anchor: new google.maps.Point(14, 43),
+          anchor: new google.maps.Point(13, 43),
           size: new google.maps.Size(27, 43),
         };
 
-        new google.maps.Marker({
+        let marker = new google.maps.Marker({
           map,
           icon,
           position: center,
@@ -64,6 +58,11 @@ function displayAqi(url) {
             fontWeight: 'thin',
             fontSize: '14px',
           },
+        });
+
+        marker.addListener('click', () => {
+          displayAreaAQI(marker.getPosition());
+          map.panTo(marker.getPosition());
         });
 
         for (let value_type of aqi_value_types) {
@@ -80,28 +79,77 @@ function displayAqi(url) {
       }
 
       average_aqi /= data.length;
-      document.querySelector('div#aqi-general h1').innerHTML = Math.round(
-        average_aqi,
-      );
-      document.querySelector('div#aqi-general h4').innerHTML = aqiDescription(
-        average_aqi,
-      );
-      document.querySelector('span#latest-update').innerHTML = point.created;
-
-      let value, v;
-      for (value in average_values) {
-        v = Math.round(
+      for (let value in average_values) {
+        average_values[value] = Math.round(
           average_values[value]['value'] / average_values[value]['count'],
         );
-
-        document.querySelector(
-          'table',
-        ).innerHTML += `<tr><td>${value}</td><td>${v}</td></tr>`;
       }
+
+      displayData(average_aqi, average_values, point.created);
     })
     .catch((error) => {
+      displayEmpty();
       console.error(error);
     });
+}
+
+function displayAreaAQI(position) {
+  fetch(
+    'http://localhost:8080/area?' +
+      new URLSearchParams({
+        latitude: position.lat(),
+        longitude: position.lng(),
+      }),
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data.length) {
+        document.querySelector('div#aqi-general h1').innerHTML = 'N/A';
+        document.querySelector('div#aqi-general h4').innerHTML =
+          'No data available';
+        document.querySelector('span#latest-update').innerHTML =
+          'no data available';
+        document.querySelector(
+          'table',
+        ).innerHTML += `<tr><td>no data</td><td>no data</td></tr>`;
+        return;
+      }
+
+      let point = data[0];
+      let values = {};
+      for (let value_type of aqi_value_types) {
+        values[value_type] = point[value_type];
+      }
+
+      displayData(point.aqi, values, point.created);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+function displayData(aqi, values, created) {
+  document.querySelector('div#aqi-general h1').innerHTML = Math.round(aqi);
+  document.querySelector('div#aqi-general h4').innerHTML = aqiDescription(aqi);
+  document.querySelector('span#latest-update').innerHTML = created;
+  document.querySelector('table').innerHTML =
+    '<tr><th>параметр</th><th>значення</th></tr>';
+
+  let value;
+  for (value in values) {
+    document.querySelector(
+      'table',
+    ).innerHTML += `<tr><td>${value}</td><td>${values[value]}</td></tr>`;
+  }
+}
+
+function displayEmpty() {
+  document.querySelector('div#aqi-general h1').innerHTML = 'N/A';
+  document.querySelector('div#aqi-general h4').innerHTML = 'No data available';
+  document.querySelector('span#latest-update').innerHTML = 'no data available';
+  document.querySelector(
+    'table',
+  ).innerHTML += `<tr><td>no data</td><td>no data</td></tr>`;
 }
 
 function aqiDescription(aqi) {
