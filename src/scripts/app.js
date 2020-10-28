@@ -32,6 +32,7 @@ function initMap() {
     if (!current_marker) return;
     displayLoading();
     stopMarker(current_marker);
+    current_marker = null;
     displayAqi(url, false);
   });
 }
