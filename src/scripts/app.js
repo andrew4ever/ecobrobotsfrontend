@@ -22,7 +22,7 @@ const url = ''; // PRODUCTION
 let current_marker = null;
 let map;
 
-window.initMap = function () {
+function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 50.515, lng: 30.785 },
     zoom: 14,
@@ -33,7 +33,7 @@ window.initMap = function () {
     stopMarker(current_marker);
     displayAqi(url, false);
   });
-};
+}
 
 function displayAqi(url, draw_markers = true) {
   fetch(url + '/map')
@@ -252,4 +252,5 @@ function stopMarker(marker) {
   }, 600);
 }
 
+initMap();
 displayAqi(url);
