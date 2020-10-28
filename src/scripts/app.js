@@ -17,7 +17,23 @@ const value_types = [
   'rad',
   'sound',
 ];
+const url = ''; // PRODUCTION
+// const url = 'http://localhost:8080'; // DEVELOPMENT
 let current_marker = null;
+let map;
+
+window.initMap = function () {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 50.515, lng: 30.785 },
+    zoom: 14,
+  });
+
+  map.addListener('click', (event) => {
+    displayLoading();
+    stopMarker(current_marker);
+    displayAqi(url, false);
+  });
+};
 
 function displayAqi(url, draw_markers = true) {
   fetch(url + '/map')
@@ -98,11 +114,6 @@ function displayAqi(url, draw_markers = true) {
       }
 
       displayData(average_aqi, average_values, point.created);
-      map.addListener('click', () => {
-        displayLoading();
-        stopMarker(current_marker);
-        displayAqi(url, false);
-      });
     })
     .catch((error) => {
       displayEmpty();
@@ -241,5 +252,4 @@ function stopMarker(marker) {
   }, 600);
 }
 
-displayAqi(''); // PRODUCTION
-// displayAqi('http://localhost:8080'); // DEVELOPMENT
+displayAqi(url);
