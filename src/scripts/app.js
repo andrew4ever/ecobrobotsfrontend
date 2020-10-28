@@ -29,6 +29,7 @@ function initMap() {
   });
 
   map.addListener('click', (event) => {
+    if (!current_marker) return;
     displayLoading();
     stopMarker(current_marker);
     displayAqi(url, false);
