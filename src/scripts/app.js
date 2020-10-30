@@ -1,22 +1,30 @@
-const base_url = 'https://i.imgur.com/';
-const aqi_value_types = ['pm25', 'pm100', 'o31', 'o38', 'co', 'so2', 'no2'];
-const value_types = [
-  'pm25',
-  'pm100',
-  'o31',
-  'o38',
-  'co',
-  'so2',
-  'no2',
-  'temp',
-  'humi',
-  'press',
-  'pm1',
-  'nh3',
-  'co2',
-  'rad',
-  'sound',
+const aqi_value_types = [
+  'PM2.5',
+  'PM10',
+  'O3 - 1h',
+  'O3 - 8h',
+  'CO',
+  'SO2',
+  'NO2',
 ];
+const value_types = [
+  'PM2.5',
+  'PM10',
+  'O3 - 1h',
+  'O3 - 8h',
+  'CO',
+  'SO2',
+  'NO2',
+  'Temperature',
+  'Humidity',
+  'Pressure',
+  'PM1',
+  'NH3',
+  'CO2',
+  'Radiation',
+  'Sound',
+];
+const base_url = 'https://i.imgur.com/';
 const url = ''; // PRODUCTION
 // const url = 'http://localhost:8080'; // DEVELOPMENT
 let current_marker = null;
@@ -95,7 +103,7 @@ function displayAqi(url, draw_markers = true) {
           });
         }
 
-        for (let value_type of aqi_value_types) {
+        for (let value_type of value_types) {
           if (!(value_type in average_values)) {
             average_values[value_type] = {
               value: 0,
@@ -148,7 +156,7 @@ function displayAreaAqi(url, position) {
 
       let point = data[0];
       let values = {};
-      for (let value_type of aqi_value_types) {
+      for (let value_type of value_types) {
         values[value_type] = point[value_type];
       }
 
