@@ -141,8 +141,8 @@ function displayAreaAqi(url, position) {
       }),
   )
     .then((response) => response.json())
-    .then((data) => {
-      if (!data.length) {
+    .then((point) => {
+      if (!point) {
         document.querySelector('div#aqi-general h1').innerHTML = 'N/A';
         document.querySelector('div#aqi-general h4').innerHTML =
           'No data available';
@@ -154,7 +154,6 @@ function displayAreaAqi(url, position) {
         return;
       }
 
-      let point = data[0];
       let values = {};
       for (let value_type of value_types) {
         values[value_type] = point[value_type];
