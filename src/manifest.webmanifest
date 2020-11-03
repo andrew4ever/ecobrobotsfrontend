@@ -1,6 +1,6 @@
 {
   "name": "#brobots eco",
-  "short_name": "brobots eco",
+  "short_name": "#brobots eco",
   "description": "#brobots eco is a net of sensors that collect data about air quality in Brovary.",
   "start_url": ".",
   "icons": [
