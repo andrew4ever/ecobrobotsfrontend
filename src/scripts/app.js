@@ -25,8 +25,8 @@ const value_types = [
   'Sound',
 ];
 const base_url = 'https://i.imgur.com/';
-const url = ''; // PRODUCTION
-// const url = 'http://localhost:8080'; // DEVELOPMENT
+// const url = ''; // PRODUCTION
+const url = 'http://localhost:8080'; // DEVELOPMENT
 let current_marker = null;
 let map;
 
@@ -123,7 +123,7 @@ function displayAqi(url, draw_markers = true) {
         );
       }
 
-      displayData(average_aqi, average_values, point.created);
+      displayData(average_aqi, average_values, data[0].created);
     })
     .catch((error) => {
       displayEmpty();
