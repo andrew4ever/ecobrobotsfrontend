@@ -36,6 +36,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 50.515, lng: 30.785 },
     zoom: map_zoom,
+    clickableIcons: false,
   });
 
   map.addListener('click', (event) => {
