@@ -29,11 +29,14 @@ const url = ''; // PRODUCTION
 // const url = 'http://localhost:8080'; // DEVELOPMENT
 let current_marker = null;
 let map;
+let map_zoom = 14;
+let marker_zoom = 16;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 50.515, lng: 30.785 },
-    zoom: 14,
+    zoom: map_zoom,
+    clickableIcons: false,
   });
 
   map.addListener('click', (event) => {
@@ -42,6 +45,7 @@ function initMap() {
     stopMarker(current_marker);
     current_marker = null;
     displayAqi(url, false);
+    map.setZoom(map_zoom);
   });
 }
 
@@ -92,12 +96,14 @@ function displayAqi(url, draw_markers = true) {
           marker.addListener('mouseup', () => {
             if (!marker.getAnimation()) {
               displayLoading();
+              map.setZoom(marker_zoom);
               stopMarker(current_marker);
               current_marker = marker;
               startMarker(marker);
               displayAreaAqi(url, marker.getPosition());
             } else {
               displayLoading();
+              map.setZoom(map_zoom);
               stopMarker(marker);
               displayAqi(url, false);
             }
