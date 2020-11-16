@@ -56,6 +56,7 @@ function displayAqi(url, draw_markers = true) {
 
       let average_aqi = 0;
       let average_values = {};
+      let created = data[0].created;
       let point;
 
       for (point of data) {
@@ -123,7 +124,11 @@ function displayAqi(url, draw_markers = true) {
         );
       }
 
-      displayData(average_aqi, average_values, point.created);
+      if (created < point.created) {
+        created = point.created;
+      }
+
+      displayData(average_aqi, average_values, created);
     })
     .catch((error) => {
       displayEmpty();
