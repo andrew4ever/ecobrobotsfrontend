@@ -165,14 +165,7 @@ function displayAreaAqi(url, position) {
     .then((response) => response.json())
     .then((point) => {
       if (!point) {
-        document.querySelector('div#aqi-general h1').innerHTML = 'N/A';
-        document.querySelector('div#aqi-general h4').innerHTML =
-          'No data available';
-        document.querySelector('span#latest-update').innerHTML =
-          'no data available';
-        document.querySelector(
-          'table',
-        ).innerHTML += `<tr><td>no data</td><td>no data</td></tr>`;
+        displayEmpty();
         return;
       }
 
@@ -195,12 +188,13 @@ function displayData(aqi, values, created) {
   document.querySelector('table').innerHTML =
     '<tr><th>параметр</th><th>значення</th></tr>';
 
-  let value, unit;
+  let value, unit, rounded_val;
   for (value in values) {
+    rounded_val = Math.round(values[value]);
     unit = value_units[value_types.indexOf(value)];
     document.querySelector(
       'table',
-    ).innerHTML += `<tr><td>${value}</td><td>${values[value]} ${unit}</td></tr>`;
+    ).innerHTML += `<tr><td>${value}</td><td>${rounded_val} ${unit}</td></tr>`;
   }
 }
 
