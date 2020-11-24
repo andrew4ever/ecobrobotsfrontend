@@ -1,13 +1,5 @@
-const aqi_value_types = [
-  'PM2.5',
-  'PM10',
-  'O3 - 1h',
-  'O3 - 8h',
-  'CO',
-  'SO2',
-  'NO2',
-];
 const value_types = [
+  // first 7 are used in AQI
   'PM2.5',
   'PM10',
   'O3 - 1h',
@@ -15,18 +7,37 @@ const value_types = [
   'CO',
   'SO2',
   'NO2',
-  'Temperature',
-  'Humidity',
-  'Pressure',
+  // 'Temperature',
+  // 'Humidity',
+  // 'Pressure',
   'PM1',
   'NH3',
   'CO2',
   'Radiation',
-  'Sound',
+  // 'Sound',
 ];
+const value_units = [
+  'AQI',
+  'AQI',
+  'AQI',
+  'AQI',
+  'AQI',
+  'AQI',
+  'AQI',
+  // 'Temperature',
+  // 'Humidity',
+  // 'Pressure',
+  'нг/м<sup>3</sup>',
+  'ppm',
+  'ppm',
+  'мкР/год',
+  // 'Sound',
+];
+
 const base_url = 'https://i.imgur.com/';
 const url = ''; // PRODUCTION
 // const url = 'http://localhost:8080'; // DEVELOPMENT
+
 let current_marker = null;
 let map;
 let map_zoom = 14;
@@ -184,11 +195,12 @@ function displayData(aqi, values, created) {
   document.querySelector('table').innerHTML =
     '<tr><th>параметр</th><th>значення</th></tr>';
 
-  let value;
+  let value, unit;
   for (value in values) {
+    unit = value_units[value_types.indexOf(value)];
     document.querySelector(
       'table',
-    ).innerHTML += `<tr><td>${value}</td><td>${values[value]}</td></tr>`;
+    ).innerHTML += `<tr><td>${value}</td><td>${values[value]} ${unit}</td></tr>`;
   }
 }
 
