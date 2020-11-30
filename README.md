@@ -1,6 +1,6 @@
 # #brobots eco frontend
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/andrew4ever/ecobrobotsfrontend?style=flat&logo=github&labelColor=181717&color=F8F8F5)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/brobots-hub/ecobrobotsfrontend?style=flat&logo=github&labelColor=181717&color=F8F8F5)
 [![#brobots eco website](https://img.shields.io/badge/%23brobots-eco-fff000)](http://eco.brobots.org.ua)
 
 Renewed frontend for #brobots eco. Includes new UI and improved UX.
