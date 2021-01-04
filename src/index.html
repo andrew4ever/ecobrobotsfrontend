@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>brobots eco</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="styles/style.scss" />
     <link
       rel="apple-touch-icon"
@@ -32,13 +30,14 @@
   </head>
   <body>
     <aside>
-      <img id="logo" src="images/logo.png" alt="brobots-logo" />
-
+      <img id="logo" src="images/logo.png" alt="brobots-logo"
+      width="360" height="47" />
+      
       <div id="aqi-general">
         <h1>...</h1>
         <h4>...</h4>
       </div>
-
+      
       <div id="aqi-table">
         <table>
           <tr>
@@ -48,13 +47,13 @@
           </tr>
         </table>
       </div>
-
+      
       <p id="latest-update">
         Всі значення розраховані станом на
         <span id="latest-update">...</span>
       </p>
     </aside>
-
+    
     <div id="map"></div>
     <script src="scripts/app.js"></script>
   </body>
