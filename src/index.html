@@ -1,61 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>brobots eco</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles/style.scss" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="favicon_io/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="favicon_io/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="favicon_io/favicon-16x16.png"
-    />
-    <link rel="manifest" href="manifest.webmanifest" />
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT63c33O0HQRUprSk6ZHDtNpjUfk8AQ48&libraries=&v=weekly"></script>
-  </head>
-  <body>
-    <aside>
-      <img id="logo" src="images/logo.png" alt="brobots-logo" />
 
-      <div id="aqi-general">
-        <h1>...</h1>
-        <h4>...</h4>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A map with data about air quality
+  in different parts of Brovary, Ukraine. The network of air quality
+  sensors sends data every 15 minutes, so data is always fresh" />
 
-      <div id="aqi-table">
-        <table>
-          <tr>
-            <th>параметр</th>
-            <!-- <th>AQI</th> -->
-            <th>значення</th>
-          </tr>
-        </table>
-      </div>
+  <title>brobots eco</title>
 
-      <p id="latest-update">
-        Всі значення розраховані станом на
-        <span id="latest-update">...</span>
-      </p>
-    </aside>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.scss" />
 
-    <div id="map"></div>
-    <script src="scripts/app.js"></script>
-  </body>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT63c33O0HQRUprSk6ZHDtNpjUfk8AQ48&libraries=&v=weekly">
+  </script>
+</head>
+
+<body>
+  <aside>
+    <img id="logo" src="images/logo.png" alt="brobots-logo" width="360" height="47" />
+
+    <div id="aqi-general">
+      <h1>...</h1>
+      <h2>...</h2>
+    </div>
+
+    <div id="aqi-table">
+      <table>
+        <tr>
+          <th>параметр</th>
+          <th>значення</th>
+        </tr>
+      </table>
+    </div>
+
+    <p id="latest-update">
+      Всі значення розраховані станом на
+      <span id="latest-update">...</span>
+    </p>
+  </aside>
+
+  <div id="map"></div>
+  <script src="scripts/app.js"></script>
+</body>
+
 </html>

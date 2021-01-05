@@ -183,7 +183,7 @@ function displayAreaAqi(url, position) {
 
 function displayData(aqi, values, created) {
   document.querySelector('div#aqi-general h1').innerHTML = Math.round(aqi);
-  document.querySelector('div#aqi-general h4').innerHTML = aqiDescription(aqi);
+  document.querySelector('div#aqi-general h2').innerHTML = aqiDescription(aqi);
   document.querySelector('span#latest-update').innerHTML = created;
   document.querySelector('table').innerHTML =
     '<tr><th>параметр</th><th>значення</th></tr>';
@@ -200,7 +200,7 @@ function displayData(aqi, values, created) {
 
 function displayLoading() {
   document.querySelector('div#aqi-general h1').innerHTML = '...';
-  document.querySelector('div#aqi-general h4').innerHTML = 'Завантаження...';
+  document.querySelector('div#aqi-general h2').innerHTML = 'Завантаження...';
   document.querySelector('span#latest-update').innerHTML = '...';
   document.querySelector('table').innerHTML =
     '<tr><th>параметр</th><th>значення</th></tr>';
@@ -211,7 +211,7 @@ function displayLoading() {
 
 function displayEmpty() {
   document.querySelector('div#aqi-general h1').innerHTML = 'N/A';
-  document.querySelector('div#aqi-general h4').innerHTML = 'Немає даних';
+  document.querySelector('div#aqi-general h2').innerHTML = 'Немає даних';
   document.querySelector('span#latest-update').innerHTML = 'немає даних';
   document.querySelector('table').innerHTML =
     '<tr><th>параметр</th><th>значення</th></tr>';
