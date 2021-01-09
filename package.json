@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Renewed frontend for #brobots eco. Includes new UI and improved UX",
   "main": "src/index.html",
+  "keywords": [],
+  "author": "Andrew Yatsura",
+  "bugs": {
+    "url": "https://github.com/andrew4ever/ecobrobotsfrontend/issues"
+  },
+  "homepage": "https://github.com/andrew4ever/ecobrobotsfrontend#readme",
   "scripts": {
     "start": "parcel src/index.html",
     "build": "rm -rf dist/ && parcel build src/index.html",
@@ -12,15 +18,12 @@
     "type": "git",
     "url": "git+https://github.com/andrew4ever/ecobrobotsfrontend.git"
   },
-  "keywords": [],
-  "author": "Andrew Yatsura",
-  "bugs": {
-    "url": "https://github.com/andrew4ever/ecobrobotsfrontend/issues"
-  },
-  "homepage": "https://github.com/andrew4ever/ecobrobotsfrontend#readme",
   "devDependencies": {
     "cssnano": "^4.1.10",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.26.11"
-  }
+  },
+  "browserslist": [
+    "since 2017-06"
+  ]
 }
