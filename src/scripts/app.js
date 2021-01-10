@@ -38,6 +38,7 @@ const base_url = 'https://i.imgur.com/';
 const url = ''; // PRODUCTION
 // const url = 'http://localhost:8080'; // DEVELOPMENT
 
+
 let current_marker = null;
 let map;
 let map_zoom = 14;
@@ -48,6 +49,10 @@ function initMap() {
     center: { lat: 50.515, lng: 30.785 },
     zoom: map_zoom,
     clickableIcons: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false
   });
 
   map.addListener('click', (event) => {
@@ -62,7 +67,17 @@ function initMap() {
 
 function displayAqi(url, draw_markers = true) {
   fetch(url + '/map')
-    .then((response) => response.json())
+    .then((response) => {
+      if ('caches' in window) {
+        caches.open('map-cache').then(cache => {
+          cache.delete(url + '/map');
+          cache.put(url + '/map', response);
+        });
+      }
+
+      let clone = response.clone();
+      return clone.json();
+    })
     .then((data) => {
       if (!data.length) {
         displayEmpty();
@@ -156,11 +171,11 @@ function displayAqi(url, draw_markers = true) {
 function displayAreaAqi(url, position) {
   fetch(
     url +
-      '/area?' +
-      new URLSearchParams({
-        latitude: position.lat(),
-        longitude: position.lng(),
-      }),
+    '/area?' +
+    new URLSearchParams({
+      latitude: position.lat(),
+      longitude: position.lng(),
+    }),
   )
     .then((response) => response.json())
     .then((point) => {
