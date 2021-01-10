@@ -68,10 +68,12 @@ function initMap() {
 function displayAqi(url, draw_markers = true) {
   fetch(url + '/map')
     .then((response) => {
-      caches.open('map-cache').then(cache => {
-        cache.delete(url + '/map');
-        cache.put(url + '/map', response);
-      });
+      if ('caches' in window) {
+        caches.open('map-cache').then(cache => {
+          cache.delete(url + '/map');
+          cache.put(url + '/map', response);
+        });
+      }
 
       let clone = response.clone();
       return clone.json();
