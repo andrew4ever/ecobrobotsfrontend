@@ -49,6 +49,10 @@ function initMap() {
     center: { lat: 50.515, lng: 30.785 },
     zoom: map_zoom,
     clickableIcons: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false
   });
 
   map.addListener('click', (event) => {
