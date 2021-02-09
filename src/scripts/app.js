@@ -14,6 +14,7 @@ const value_types = [
   'NH3',
   'CO2',
   'Radiation',
+  'Sensor ID',
   // 'Sound',
 ];
 const value_units = [
@@ -31,6 +32,7 @@ const value_units = [
   'ppm',
   'ppm',
   'мкР/год',
+  '',
   // 'Sound',
 ];
 
@@ -104,37 +106,36 @@ function displayAqi(url, draw_markers = true) {
           size: new google.maps.Size(27, 43),
         };
 
-        if (draw_markers) {
-          let marker = new google.maps.Marker({
-            map,
-            icon,
-            position: center,
-            title: point.aqi.toString(),
-            label: {
-              text: point.aqi.toString(),
-              color: 'black',
-              fontFamily: 'Roboto',
-              fontWeight: 'thin',
-              fontSize: '14px',
-            },
-          });
+        let marker = new google.maps.Marker({
+          map,
+          icon,
+          position: center,
+          title: point.aqi.toString(),
+          label: {
+            text: point.aqi.toString(),
+            color: 'black',
+            fontFamily: 'Roboto',
+            fontWeight: 'thin',
+            fontSize: '14px',
+          },
+        });
 
-          marker.addListener('mouseup', () => {
-            if (!marker.getAnimation()) {
-              displayLoading();
-              map.setZoom(marker_zoom);
-              stopMarker(current_marker);
-              current_marker = marker;
-              startMarker(marker);
-              displayAreaAqi(url, marker.getPosition());
-            } else {
-              displayLoading();
-              map.setZoom(map_zoom);
-              stopMarker(marker);
-              displayAqi(url, false);
-            }
-          });
-        }
+        marker.addListener('mouseup', () => {
+          if (!marker.getAnimation()) {
+            displayLoading();
+            map.setZoom(marker_zoom);
+            stopMarker(current_marker);
+            current_marker = marker;
+            startMarker(marker);
+            displayAreaAqi(url, marker.getPosition());
+          } else {
+            displayLoading();
+            map.setZoom(map_zoom);
+            stopMarker(marker);
+            displayAqi(url, false);
+          }
+        });
+
 
         for (let value_type of value_types) {
           if (!(value_type in average_values)) {
@@ -160,6 +161,7 @@ function displayAqi(url, draw_markers = true) {
         created = point.created;
       }
 
+      delete average_values['Sensor ID'];
       displayData(average_aqi, average_values, created);
     })
     .catch((error) => {
